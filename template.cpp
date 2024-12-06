@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <filesystem>
+#include <algorithm>
+#include <numeric>
 
 int solution(std::vector<std::string> &input)
 {
