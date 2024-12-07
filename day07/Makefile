@@ -3,7 +3,7 @@
 CXX = g++
 CXX_FLAGS = -Wall -Werror -std=c++17 -O2
 CXX_DEBUG_FLAGS = -Wall -Werror -std=c++17 -g
-LIBS =
+LIBS = -lgmpxx -lgmp
 BIN = bin
 
 default: p1r p2r
