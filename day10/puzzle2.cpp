@@ -7,42 +7,50 @@
 #include <numeric>
 #include <array>
 
-int dfs(std::vector<std::vector<int>> &map, int y, int x)
-{
-    int sum = 0;
-    int current_val = map[y][x];
-
-    if(current_val == 9) return sum + 1;
-
-    if( y > 0 && map[y-1][x] == current_val+1)                    sum += dfs(map, y-1, x);
-    if( x > 0 && map[y][x-1] == current_val+1)                    sum += dfs(map, y, x-1);
-    if( y < (int)map.size()-1 && map[y+1][x] == current_val+1)    sum += dfs(map, y+1, x);
-    if( x < (int)map[y].size()-1 && map[y][x+1] == current_val+1) sum += dfs(map, y, x+1);
-
-    return sum;
-}
-
 int solution(std::vector<std::string> &input)
 {
-    std::vector<std::vector<int>> map(input.size());
-    for( size_t y=0; y<input.size(); y++ )
+    std::array<std::vector<std::pair<int, int>>, 10> map;
+    std::array<std::vector<std::vector<int>>, 10> distances;
+    for( auto &mp : distances )
     {
-        for( size_t x=0; x<input[y].size(); x++ )
+        mp.resize(input.size()+2);
+        for( auto &v : mp )
         {
-            map[y].push_back(input[y][x]-'0');
+            v.resize(input[0].size()+2);
+        }
+    }
+
+    for( size_t y=1; y<=input.size(); y++ )
+    {
+        for( size_t x=1; x<=input[y-1].size(); x++ )
+        {
+            map[input[y-1][x-1]-'0'].push_back({y, x});
+        }
+    }
+
+    for( auto &pr : map[9] )
+    {
+        distances[9][pr.first][pr.second] = 1;
+    }
+
+    for(int i=8; i>0; i--)
+    {
+        for( auto &pr : map[i] )
+        {
+            distances[i][pr.first][pr.second] = distances[i+1][pr.first-1][pr.second] +
+                                                distances[i+1][pr.first][pr.second-1] +
+                                                distances[i+1][pr.first+1][pr.second] +
+                                                distances[i+1][pr.first][pr.second+1];
         }
     }
 
     int res = 0;
-    for( size_t y=0; y<input.size(); y++ )
+    for( auto &pr : map[0] )
     {
-        for( size_t x=0; x<input[y].size(); x++ )
-        {
-            if( map[y][x] == 0 ) // trailhead found
-            {
-                res += dfs(map, y, x);
-            }
-        }
+        res += distances[1][pr.first-1][pr.second] +
+               distances[1][pr.first][pr.second-1] +
+               distances[1][pr.first+1][pr.second] +
+               distances[1][pr.first][pr.second+1];
     }
 
     return res;
