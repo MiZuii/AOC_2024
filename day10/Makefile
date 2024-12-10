@@ -35,5 +35,9 @@ p2g : puzzle2.nostrip
 
 p1p : puzzle1.prof
 	${BIN}/puzzle1.prof
-p1p : puzzle2.prof
+	gprof ${BIN}/puzzle1.prof > ${BIN}/puzzle1.prof.txt
+	rm gmon*
+p2p : puzzle2.prof
 	${BIN}/puzzle2.prof
+	gprof ${BIN}/puzzle2.prof > ${BIN}/puzzle2.prof.txt
+	rm gmon*
