@@ -7,21 +7,22 @@
 #include <numeric>
 #include <unordered_map>
 #include <cmath>
-#include <gmpxx.h>
 
-struct mpz_hash {
-    std::size_t operator()(const mpz_class& z) const {
-        return std::hash<std::string>()(z.get_str());
-    }
-};
+using stone_t = unsigned long long;
+using result_t = unsigned long long;
+using cache_t = std::unordered_map<stone_t, std::unordered_map<int, result_t>>;
 
-struct mpz_equal {
-    bool operator()(const mpz_class& a, const mpz_class& b) const {
-        return a == b;
-    }
-};
+int count_nums(stone_t x)
+{
+    int count = 0;
+    do
+    {
+        count++;
+    } while(x /= 10);
+    return count;
+}
 
-mpz_class blink(mpz_class stone, int blinks_left, std::unordered_map<mpz_class, std::unordered_map<int, mpz_class>, mpz_hash, mpz_equal> &cache)
+stone_t blink(stone_t stone, int blinks_left, cache_t &cache)
 {
     if( blinks_left == 0 ) return 1;
 
@@ -34,18 +35,18 @@ mpz_class blink(mpz_class stone, int blinks_left, std::unordered_map<mpz_class, 
         }
     }
 
-    mpz_class res = 0;
+    result_t res = 0;
+    int count = 0;
     if( stone == 0 )
     {
         res = blink(1, blinks_left-1, cache);
     }
-    else if( stone.get_str().size() % 2 == 0)
+    else if( (count = count_nums(stone)) % 2 == 0 )
     {
-        mpz_class div = std::pow(10, stone.get_str().size()/2);
-        mpz_class ldigit = stone / div;
-        mpz_class rdigit = stone % div;
-        res += blink(ldigit, blinks_left-1, cache);
-        res += blink(rdigit, blinks_left-1, cache);
+        int div = std::pow(10, count/2);
+        stone_t ldigit = stone / div;
+        stone_t rdigit = stone % div;
+        res = blink(ldigit, blinks_left-1, cache) + blink(rdigit, blinks_left-1, cache);
     }
     else
     {
@@ -56,18 +57,18 @@ mpz_class blink(mpz_class stone, int blinks_left, std::unordered_map<mpz_class, 
     return res;
 }
 
-mpz_class solution(std::vector<std::string> &input)
+result_t solution(std::vector<std::string> &input)
 {
     std::stringstream is(input[0]);
     std::string token;
-    std::vector<mpz_class> stones;
-    std::unordered_map<mpz_class, std::unordered_map<int, mpz_class>, mpz_hash, mpz_equal> cache;
+    std::vector<stone_t> stones;
+    cache_t cache;
     while(std::getline(is, token, ' '))
     {
-        stones.push_back(mpz_class(token));
+        stones.push_back(std::stoull(token));
     }
 
-    return std::accumulate(stones.begin(), stones.end(), mpz_class(0), [&cache](mpz_class &acc, mpz_class &r) { return acc + blink(r, 74, cache); });
+    return std::accumulate(stones.begin(), stones.end(), result_t(0), [&cache](result_t &acc, stone_t &r) { return acc + blink(r, 25, cache); });
 }
 
 int main(int argc, char* argv[]) {
