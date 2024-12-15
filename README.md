@@ -18,7 +18,7 @@ For more info visit [Advent of Code](https://adventofcode.com/) website. Below i
 | day 12 | :star: | :star: |
 | day 13 | :star: | :star: |
 | day 14 | :star: | :star: |
-| day 15 |  |  |
+| day 15 | :star: | :star: |
 | day 16 |  |  |
 | day 17 |  |  |
 | day 18 |  |  |
