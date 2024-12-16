@@ -19,7 +19,7 @@ For more info visit [Advent of Code](https://adventofcode.com/) website. Below i
 | day 13 | :star: | :star: |
 | day 14 | :star: | :star: |
 | day 15 | :star: | :star: |
-| day 16 |  |  |
+| day 16 | :star: | :star: |
 | day 17 |  |  |
 | day 18 |  |  |
 | day 19 |  |  |
