@@ -25,7 +25,7 @@ For more info visit [Advent of Code](https://adventofcode.com/) website. Below i
 | day 19 | :star: | :star: |
 | day 20 | :star: | :star: |
 | day 21 | :star: | :star: |
-| day 22 |  |  |
+| day 22 | :star: | :star: |
 | day 23 |  |  |
 | day 24 |  |  |
 | day 25 |  |  |
@@ -34,6 +34,7 @@ For more info visit [Advent of Code](https://adventofcode.com/) website. Below i
 
 | Day | Part 1 Time | Part 1 Rank | Part 2 Time | Part 2 Rank |
 |-----|-------------|-------------|-------------|-------------|
+| 22  | 00:20:35    | 2904        | 02:57:51    | 4767        |
 | 21  | 01:48:41    | 1392        | 02:51:03    | 1126        |
 | 20  | 00:39:09    | 2002        | 00:58:16    | 1319        |
 | 19  | 00:44:38    | 4458        | 00:49:39    | 3419        |
