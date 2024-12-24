@@ -27,13 +27,14 @@ For more info visit [Advent of Code](https://adventofcode.com/) website. Below i
 | day 21 | :star: | :star: |
 | day 22 | :star: | :star: |
 | day 23 | :star: | :star: |
-| day 24 |  |  |
+| day 24 | :star: | :star: |
 | day 25 |  |  |
 
 #### My solve times
 
 | Day | Part 1 Time | Part 1 Rank | Part 2 Time | Part 2 Rank |
 |-----|-------------|-------------|-------------|-------------|
+| 24  | 01:05:13    | 4268        | 05:39:30    | 3156        |
 | 23  | 00:27:48    | 2876        | 01:11:11    | 3006        |
 | 22  | 00:20:35    | 2904        | 02:57:51    | 4767        |
 | 21  | 01:48:41    | 1392        | 02:51:03    | 1126        |
